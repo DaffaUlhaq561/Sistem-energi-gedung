@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Preview Desain - EnergiHub v2.0</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 2rem 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        .container {
+            max-width: 1000px;
+        }
+
+        .header-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+
+        .header-section h1 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+            transform: translateY(-4px);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .feature-card i {
+            font-size: 1.5rem;
+        }
+
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .feature-list li {
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 0.95rem;
+            color: #333;
+        }
+
+        .feature-list li:last-child {
+            border-bottom: none;
+        }
+
+        .feature-list i {
+            color: #198754;
+            margin-right: 0.5rem;
+            font-weight: bold;
+        }
+
+        .color-palette {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .color-box {
+            border-radius: 8px;
+            height: 100px;
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            padding: 0.5rem;
+            text-align: center;
+            font-size: 0.85rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-preview {
+            background: linear-gradient(90deg, #1e3a8a 0%, #0d6efd 100%);
+            border-radius: 12px;
+            padding: 1rem 2rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-preview .logo {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-preview .nav-items {
+            display: flex;
+            gap: 2rem;
+            flex: 1;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-preview .nav-items li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-preview .nav-items li a:hover {
+            color: #fff;
+            transform: translateY(-2px);
+        }
+
+        .nav-preview .user-section {
+            margin-left: auto;
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn-logout {
+            background: transparent;
+            border: 2px solid white;
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 6px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: white;
+            color: #0d6efd;
+        }
+
+        .stat-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .stat-card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            border-left: 5px solid #0d6efd;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: rgba(102, 126, 234, 0.05);
+        }
+
+        .stat-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-value {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #0d6efd;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-unit {
+            font-size: 0.85rem;
+            color: #999;
+        }
+
+        .section-title {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin: 2rem 0 1rem 0;
+            text-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+
+        .footer-section {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+
+        .footer-section h3 {
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p {
+            color: #666;
+            font-size: 0.95rem;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header-section">
+            <h1><i class="fas fa-bolt" style="color: #f5576c;"></i> EnergiHub v2.0</h1>
+            <p style="color: #666; margin: 0;">Sistem Monitoring Energi Gedung - Redesign Preview</p>
+        </div>
+
+        <!-- Navbar Preview -->
+        <h2 class="section-title"><i class="fas fa-bars me-2"></i>Navigation Bar</h2>
+        <div class="nav-preview">
+            <div class="logo">
+                <i class="fas fa-bolt"></i>EnergiHub
+            </div>
+            <ul class="nav-items">
+                <li><a href="#"><i class="fas fa-chart-line"></i>Dashboard</a></li>
+                <li><a href="#"><i class="fas fa-eye"></i>Monitoring</a></li>
+                <li><a href="#"><i class="fas fa-file-alt"></i>Laporan</a></li>
+                <li><a href="#"><i class="fas fa-wrench"></i>Catatan</a></li>
+            </ul>
+            <div class="user-section">
+                <span><i class="fas fa-user-circle"></i>Admin</span>
+                <button class="btn-logout">Logout</button>
+            </div>
+        </div>
+
+        <!-- Color Palette -->
+        <h2 class="section-title"><i class="fas fa-palette me-2"></i>Palet Warna</h2>
+        <div class="color-palette">
+            <div class="color-box" style="background: #0d6efd;">Primary Blue</div>
+            <div class="color-box" style="background: #0dcaf0;">Cyan</div>
+            <div class="color-box" style="background: #6f42c1;">Purple</div>
+            <div class="color-box" style="background: #198754;">Success Green</div>
+            <div class="color-box" style="background: #dc3545;">Danger Red</div>
+            <div class="color-box" style="background: #ffc107; color: #333;">Warning Yellow</div>
+        </div>
+
+        <!-- Features -->
+        <h2 class="section-title"><i class="fas fa-star me-2"></i>Fitur Utama</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3><i class="fas fa-paint-brush"></i>Modern Design</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Gradient backgrounds</li>
+                    <li><i class="fas fa-check"></i>Smooth animations</li>
+                    <li><i class="fas fa-check"></i>Shadow effects</li>
+                    <li><i class="fas fa-check"></i>Hover interactions</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-mobile-alt"></i>Responsive</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Mobile friendly</li>
+                    <li><i class="fas fa-check"></i>Tablet optimized</li>
+                    <li><i class="fas fa-check"></i>Desktop ready</li>
+                    <li><i class="fas fa-check"></i>Flexible grid</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-icon"></i>Icons & Symbols</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Font Awesome 6.4.0</li>
+                    <li><i class="fas fa-check"></i>Semantic icons</li>
+                    <li><i class="fas fa-check"></i>Status indicators</li>
+                    <li><i class="fas fa-check"></i>Visual feedback</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-chart-bar"></i>Data Visualization</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Chart.js 4.4.4</li>
+                    <li><i class="fas fa-check"></i>Enhanced styling</li>
+                    <li><i class="fas fa-check"></i>Point styling</li>
+                    <li><i class="fas fa-check"></i>Gradient fills</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-table"></i>Tables</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Sticky headers</li>
+                    <li><i class="fas fa-check"></i>Hover effects</li>
+                    <li><i class="fas fa-check"></i>Status badges</li>
+                    <li><i class="fas fa-check"></i>Responsive scroll</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-check-circle"></i>Performance</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>CSS optimized</li>
+                    <li><i class="fas fa-check"></i>No JS errors</li>
+                    <li><i class="fas fa-check"></i>Fast loading</li>
+                    <li><i class="fas fa-check"></i>Browser support</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Stat Cards Preview -->
+        <h2 class="section-title"><i class="fas fa-gauge me-2"></i>Dashboard Stat Cards</h2>
+        <div class="stat-preview">
+            <div class="stat-card">
+                <div class="stat-content">
+                    <div class="stat-label">Total Konsumsi (30 hari)</div>
+                    <div class="stat-value">2,458</div>
+                    <div class="stat-unit">kWh</div>
+                </div>
+            </div>
+            <div class="stat-card" style="border-left-color: #0dcaf0;">
+                <div class="stat-content">
+                    <div class="stat-label">Rata-rata Per Sampel</div>
+                    <div class="stat-value" style="color: #0dcaf0;">45.2</div>
+                    <div class="stat-unit">kWh</div>
+                </div>
+            </div>
+            <div class="stat-card" style="border-left-color: #6f42c1;">
+                <div class="stat-content">
+                    <div class="stat-label">Status Sistem</div>
+                    <div class="stat-value" style="color: #6f42c1;">✅ Normal</div>
+                    <div class="stat-unit">Dalam batas aman</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Changes Summary -->
+        <h2 class="section-title"><i class="fas fa-list-check me-2"></i>Ringkasan Perubahan</h2>
+        <div class="feature-grid">
+            <div class="feature-card">
+                <h3><i class="fas fa-file"></i>Halaman yang Diupdate</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>Login.php</li>
+                    <li><i class="fas fa-check"></i>Register.php</li>
+                    <li><i class="fas fa-check"></i>Dashboard.php</li>
+                    <li><i class="fas fa-check"></i>Monitoring.php</li>
+                    <li><i class="fas fa-check"></i>Laporan.php</li>
+                    <li><i class="fas fa-check"></i>Catatan.php</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-cogs"></i>File yang Dimodifikasi</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>assets/style.css</li>
+                    <li><i class="fas fa-check"></i>partials/header.php</li>
+                    <li><i class="fas fa-check"></i>partials/footer.php</li>
+                    <li><i class="fas fa-check"></i>Semua halaman utama</li>
+                    <li><i class="fas fa-check"></i>Login/Register pages</li>
+                </ul>
+            </div>
+
+            <div class="feature-card">
+                <h3><i class="fas fa-check-double"></i>Testing Status</h3>
+                <ul class="feature-list">
+                    <li><i class="fas fa-check"></i>PHP Syntax: OK ✓</li>
+                    <li><i class="fas fa-check"></i>No breaking changes</li>
+                    <li><i class="fas fa-check"></i>Database compatible</li>
+                    <li><i class="fas fa-check"></i>All functions working</li>
+                    <li><i class="fas fa-check"></i>Fully responsive</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer-section" style="margin-top: 3rem;">
+            <h3>Status: Ready for Production ✅</h3>
+            <p>Semua perubahan desain telah selesai dan tidak menimbulkan error. Proyek siap untuk deployment.</p>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Jangan commit file environment yang berisi secret
+.env
+*.env
+php-docker/.env
+
