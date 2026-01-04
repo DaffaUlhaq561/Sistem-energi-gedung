@@ -3,3 +3,4 @@
 *.env
 php-docker/.env
 
+*.sql
